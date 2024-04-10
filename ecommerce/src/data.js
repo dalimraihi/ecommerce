@@ -1,23 +1,23 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/XsdmR2c/1.png",
-    title: "SUMMER SALE",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    img: "https://nwwildfoods.com/cdn/shop/products/raw-organic-almonds.jpg?v=1674424072&width=3000",
+    title: "Almonds",
+    desc: "Almonds are a type of tree nut known for their sweet, nutty flavor and crunchy texture.",
     bg: "f5fafd",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/DG69bQ4/2.png",
-    title: "AUTUMN COLLECTION",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    img: "https://prannuts.com/cdn/shop/products/WALNUTS_1024x1024.jpg?v=1631278417",
+    title: "Walnuts",
+    desc: "Walnuts are known for their distinct taste, crunchy texture, and high nutritional value.",
     bg: "fcf1ed",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/cXFnLLV/3.png",
-    title: "LOUNGEWEAR LOVE",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    img: "https://ayoubs.ca/cdn/shop/products/PremiumPistachiosRaw.jpg?v=1588358372",
+    title: "Pistachios",
+    desc: "Pistachios are a type of tree nut with a slightly sweet flavor and a crisp texture.",
     bg: "fbf0f4",
   },
 ];
@@ -25,52 +25,71 @@ export const sliderItems = [
 export const categories = [
   {
     id: 1,
-    img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    title: "SHIRT STYLE!",
+    img: "https://nwwildfoods.com/cdn/shop/products/raw-organic-almonds.jpg?v=1674424072&width=3000",
+    title: "Almonds",
+    cat: "Almonds", // Add this
   },
   {
     id: 2,
-    img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    title: "LOUNGEWEAR LOVE",
+    img: "https://prannuts.com/cdn/shop/products/WALNUTS_1024x1024.jpg?v=1631278417",
+    title: "Walnuts",
+    cat: "Walnuts", // Add this
   },
   {
     id: 3,
-    img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    title: "LIGHT JACKETS",
+    img: "https://ayoubs.ca/cdn/shop/products/PremiumPistachiosRaw.jpg?v=1588358372",
+    title: "Pistachios",
+    cat: "Pistachios", // Add this
   },
 ];
 
 export const popularProducts = [
   {
     id: 1,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    img: "https://wearenutsmn.com/cdn/shop/products/RS_XL_WHOLE_CASHEWS_600x.jpg?v=1565281955",
+    name: "Whole Cashews",
+    cat: "Cashews", // Assuming this is the category for this product
   },
   {
     id: 2,
-    img: "https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+    img: "https://www.gourmetfoodworld.com/images/Product/medium/pecan-halves-junior-mammoth-1S-1314.jpg",
+    name: "Pecan Halves",
+    cat: "Pecans", // Assuming this is the category for this product
   },
   {
     id: 3,
-    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    img: "https://www.healthysupplies.co.uk/cached/1679897813/pics/800x800/peanuts-salted-roasted-HS-closeup2.webp",
+    name: "Salted Roasted Peanuts",
+    cat: "Peanuts", // Assuming this is the category for this product
   },
   {
     id: 4,
-    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+    img: "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/4061_SupremeRoastedM-ImyKhWxg-zoom.jpeg",
+    name: "Supreme Roasted Mix",
+    cat: "Mix", // Assuming this is the category for this product
   },
   {
     id: 5,
-    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    img: "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/3516_EverythingBagel-pSf51hMG-zoom.jpg",
+    name: "Everything Bagel Mix",
+    cat: "Mix", // Assuming this is the category for this product
   },
   {
     id: 6,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    img: "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/4046_Jumbo+Roasted+P-mi1hEXRy-zoom.jpg",
+    name: "Jumbo Roasted Peanuts",
+    cat: "Peanuts", // Assuming this is the category for this product
   },
   {
     id: 7,
-    img: "https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+    img: "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/2003_Hazelnuts%20Filbe-hrR47aeJ-zoom.jpg",
+    name: "Hazelnuts Filberts",
+    cat: "Hazelnuts", // Assuming this is the category for this product
   },
   {
     id: 8,
-    img: "https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
+    img: "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/4029_RoastedBrazilNu-XB5_A25c-zoom.jpeg",
+    name: "Roasted Brazil Nuts",
+    cat: "Brazil Nuts", // Assuming this is the category for this product
   },
 ];

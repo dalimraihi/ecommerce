@@ -3,12 +3,14 @@ import styled from "styled-components";
 import WestIcon from "@mui/icons-material/West";
 import EastIcon from "@mui/icons-material/East";
 import { sliderItems } from "../data";
+import { mobile } from "../responsive";
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   position: relative;
   overflow: hidden;
+  ${mobile({ display: "none" })}
 `;
 const Arrow = styled.div`
   width: 50px;
@@ -89,7 +91,7 @@ const Slider = () => {
         <Wrapper SlideIndex={SlideIndex}>
           {sliderItems.map((item) => {
             return (
-              <Slide bg={item.bg}>
+              <Slide bg={item.bg} key={item.id}>
                 <ImageContainer>
                   <Image src={item.img} />
                 </ImageContainer>
