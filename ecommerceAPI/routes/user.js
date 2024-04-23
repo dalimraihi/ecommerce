@@ -7,6 +7,17 @@ const CryptoJS = require("crypto-js");
 const User = require("../models/User");
 const router = require("express").Router();
 
+// Add User
+router.post("/add", verifyTokenAndAdmin, async (req, res) => {
+  const newUser = new User(req.body);
+  try {
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 router.put("/:id", verifyToken, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(

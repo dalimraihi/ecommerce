@@ -9,6 +9,7 @@ import { mobile } from "../responsive";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import Remove from "@mui/icons-material/Remove";
+import { useSelector } from "react-redux";
 
 // Add your Stripe public key here
 
@@ -130,6 +131,7 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
   return (
     <Container>
       <Navbar />
@@ -146,62 +148,43 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/3004-Raw-Almonds-Ove-tmRP3a0B-zoom.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Almonds
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b>93813718293
-                  </ProductId>
-                  <ProductQuantity>
-                    <b>Quantity:</b> 7.5K
-                  </ProductQuantity>
-                  <ProductPrice>7$</ProductPrice>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContrainer>
-                  <AddIcon /> <ProductAmount>2</ProductAmount>
-                  <RemoveIcon />
-                </ProductAmountContrainer>
-                <ProductPrice>15$</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product) => (
+              <Product>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>
+                      <b>Product:</b> {product.title}
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b>
+                      {product._id}
+                    </ProductId>
+                    <ProductQuantity>
+                      <b>Quantity:</b> {product.quantity} kg
+                    </ProductQuantity>
+                    <ProductPrice>{product.price} $</ProductPrice>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContrainer>
+                    <AddIcon /> <ProductAmount>2</ProductAmount>
+                    <RemoveIcon />
+                  </ProductAmountContrainer>
+                  <ProductPrice>
+                    {product.price * product.quantity} $
+                  </ProductPrice>
+                </PriceDetail>
+              </Product>
+            ))}
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/3004-Raw-Almonds-Ove-tmRP3a0B-zoom.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Almonds
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b>93813718293
-                  </ProductId>
-                  <ProductQuantity>
-                    <b>Quantity:</b> 7.5K
-                  </ProductQuantity>
-                  <ProductPrice>7$</ProductPrice>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContrainer>
-                  <AddIcon /> <ProductAmount>2</ProductAmount>
-                  <RemoveIcon />
-                </ProductAmountContrainer>
-                <ProductPrice>15$</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
 
           <Summary>
             <SummaryTitle>ORDER NOW</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated shipping </SummaryItemText>
@@ -213,7 +196,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECK OUT NOW</Button>
           </Summary>

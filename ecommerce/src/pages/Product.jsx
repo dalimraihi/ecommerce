@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
+import { publicRequest } from "../requestMethods";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
+
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
@@ -47,9 +54,7 @@ const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
 `;
-const FilterColor = styled.div``;
-const FilterSize = styled.select``;
-const FilterSizeOption = styled.select``;
+
 const OrderQuantity = styled.div`
   width: 100%;
   display: flex;
@@ -74,6 +79,31 @@ const Quantity = styled.span`
     border: 1px solid black;
   }
 `;
+const AddQuantity = styled.div`
+  display: flex;
+  font-size: 20px;
+`;
+const AddContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+`;
+const AmountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+`;
+const Amount = styled.span`
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
+`;
 const Button = styled.div`
   font-weight: 500;
   padding: 10px;
@@ -92,10 +122,40 @@ const Button = styled.div`
   }
 `;
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
   const [clickedIndex, setClickedIndex] = useState(null);
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await publicRequest.get("/products/find/" + id);
+        setProduct(response.data);
+        console.log(product.img);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, [id]);
 
   const handleClick = (index) => {
     setClickedIndex(index);
+  };
+  const handleQuantity = (type) => {
+    if (type === "dec" && quantity > 0) {
+      setQuantity(quantity - 1);
+    } else if (type === "inc") {
+      setQuantity(quantity + 1);
+    } else if (type === "dec" && quantity === 1) {
+      // Set quantity to 0 directly if it's already 0
+      setQuantity(1);
+    }
+  };
+  const handleOrder = () => {
+    dispatch(addProduct({ ...product, quantity }));
   };
   return (
     <Container>
@@ -103,7 +163,7 @@ const Product = () => {
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://www.uclahealth.org/sites/default/files/styles/landscape_3x2_016000_640x427/public/images/f9/mixed-nuts-istock-152990123.jpg?f=4daef427&itok=skPOIqLL" />
+          {product && <Image src={product.img} alt="dali" />}
         </ImgContainer>
         <InfoContainer>
           <Title>dqsdqsd</Title>
@@ -125,10 +185,19 @@ const Product = () => {
               </Quantity>
             ))}
           </OrderQuantity>
-          <Button>Add To Cart</Button>
+
+          <AddContainer>
+            <AmountContainer>
+              <AddQuantity>
+                <RemoveIcon onClick={() => handleQuantity("dec")} />
+                <Amount>{quantity}</Amount>
+                <AddIcon onClick={() => handleQuantity("inc")} />
+              </AddQuantity>
+            </AmountContainer>
+            <Button onClick={() => handleOrder("dec")}>Add To Cart</Button>
+          </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
       <Footer />
     </Container>
   );
