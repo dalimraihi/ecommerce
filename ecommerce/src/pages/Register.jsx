@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/apiCalls";
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -45,22 +47,56 @@ const Button = styled.button`
   cursor: pointer;
 `;
 const Register = () => {
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    const user = { username, email, password, name, lastName };
+    await register(dispatch, user); // This is similar to the login function
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>Create my account</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+        <Form onSubmit={handleSubmit}>
+          <Input placeholder="name" onChange={(e) => setName(e.target.value)} />
+          <Input
+            placeholder="last name"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <Input
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            placeholder="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Input
+            placeholder="confirm password"
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
           <Agreement>
             By creating an account, I consent to the processing of m y personal
             data in accordan,ce with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>Create</Button>
+          <Button type="submit">Create</Button>
         </Form>
       </Wrapper>
     </Container>

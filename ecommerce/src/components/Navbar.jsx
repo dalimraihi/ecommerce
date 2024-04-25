@@ -45,6 +45,7 @@ const Input = styled.input`
 const Center = styled.div`
   flex: 1;
   text-align: center;
+  ${mobile({ display: "none" })}
 `;
 const Logo = styled.h1`
   font-weight: bold;
@@ -79,7 +80,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>DOLDOL YAQTAHEM</Logo>
+          <Logo>More Than Buisness</Logo>
         </Center>
         <Right>
           <Link to="/register">
